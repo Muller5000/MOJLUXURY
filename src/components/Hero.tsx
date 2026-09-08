@@ -3,8 +3,13 @@ import { motion, AnimatePresence } from 'motion/react';
 import heroImage1 from '../assets/hero_carousel_1.jpg';
 import heroImage2 from '../assets/hero_carousel_2.jpg';
 import heroImage3 from '../assets/hero_carousel_3.jpg';
+import heroImage4 from '../assets/hero_carousel_4.jpg';
+import heroImage5 from '../assets/hero_carousel_5.jpg';
+import heroImage6 from '../assets/hero_carousel_6.jpg';
+import heroImage7 from '../assets/hero_carousel_7.jpg';
+import heroImage8 from '../assets/hero_carousel_8.jpg';
 
-const images = [heroImage1, heroImage2, heroImage3];
+const images = [heroImage1, heroImage2, heroImage3, heroImage4, heroImage5, heroImage6, heroImage7, heroImage8];
 
 export function Hero() {
   const [currentIndex, setCurrentIndex] = useState(0);
