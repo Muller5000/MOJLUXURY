@@ -1,18 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 import heroImage1 from '../assets/hero_carousel_1.jpg';
-import heroImage2 from '../assets/hero_carousel_2.jpg';
-import heroImage3 from '../assets/hero_carousel_3.jpg';
 import heroImage4 from '../assets/hero_carousel_4.jpg';
 import heroImage5 from '../assets/hero_carousel_5.jpg';
 import heroImage6 from '../assets/hero_carousel_6.jpg';
 import heroImage7 from '../assets/hero_carousel_7.jpg';
 import heroImage8 from '../assets/hero_carousel_8.jpg';
 
-const images = [heroImage1, heroImage2, heroImage3, heroImage4, heroImage5, heroImage6, heroImage7, heroImage8];
+const images = [heroImage1, heroImage4, heroImage5, heroImage6, heroImage7, heroImage8];
 
 export function Hero() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { scrollY } = useScroll();
+  
+  // Parallax effects
+  const bgY = useTransform(scrollY, [0, 800], [0, 300]);
+  const textOpacity = useTransform(scrollY, [0, 400], [1, 0]);
+  const textScale = useTransform(scrollY, [0, 400], [1, 0.9]);
+  const textY = useTransform(scrollY, [0, 400], [0, 100]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -24,8 +29,8 @@ export function Hero() {
   return (
     <div className="w-full bg-[#1b1512] text-white relative overflow-hidden h-[75vh] sm:h-[80vh] lg:h-[88vh] flex items-center justify-center">
       
-      {/* 1. Moving Background Image Carousel */}
-      <div className="absolute inset-0 z-0 bg-[#120e0d]">
+      {/* 1. Moving Background Image Carousel with Parallax */}
+      <motion.div style={{ y: bgY }} className="absolute inset-0 z-0 bg-[#120e0d] h-[120%] -top-[10%]">
         <AnimatePresence>
           <motion.img
             key={currentIndex}
@@ -42,10 +47,13 @@ export function Hero() {
         {/* Premium Dark Vignette Overlay for High Text Contrast */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/45 to-black/75 z-10"></div>
         <div className="absolute inset-0 opacity-5 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none z-10"></div>
-      </div>
+      </motion.div>
 
-      {/* 2. Brand Text & CTA Overlay Content */}
-      <div className="relative z-20 max-w-[1440px] mx-auto h-full flex flex-col justify-center items-center text-center px-6 sm:px-12 md:px-16">
+      {/* 2. Brand Text & CTA Overlay Content with Fade/Scale out on Scroll */}
+      <motion.div 
+        style={{ opacity: textOpacity, scale: textScale, y: textY }}
+        className="relative z-20 max-w-[1440px] mx-auto h-full flex flex-col justify-center items-center text-center px-6 sm:px-12 md:px-16"
+      >
         
         <div className="space-y-6 max-w-2xl">
           <motion.div
@@ -82,7 +90,7 @@ export function Hero() {
         </div>
 
         {/* 3. Carousel Indicators */}
-        <div className="absolute bottom-8 z-20 flex space-x-3">
+        <div className="absolute bottom-8 z-20 flex space-x-3 pointer-events-auto">
           {images.map((_, idx) => (
             <button
               key={idx}
@@ -94,7 +102,7 @@ export function Hero() {
             />
           ))}
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
