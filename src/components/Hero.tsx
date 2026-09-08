@@ -55,14 +55,14 @@ export function Hero() {
             className="space-y-4"
           >
             <span className="text-xs text-amber-400 uppercase tracking-[0.3em] font-bold block">
-              Exclusive New Drop
+              The New Standard
             </span>
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-serif tracking-tight uppercase leading-[1.1] text-white drop-shadow-lg">
-              Traditional <br />
-              <span className="text-amber-500 font-bold block mt-1">Elegance</span>
+              Modern <br />
+              <span className="text-amber-500 font-bold block mt-1">Luxury</span>
             </h1>
             <p className="text-amber-100/90 text-base sm:text-lg font-serif italic leading-loose max-w-xl mx-auto drop-shadow-md">
-              Step into your landmark moments styled in premium handcrafted Gele, Mikado silks, and Ankara prints draped to fit you flawlessly.
+              From bespoke traditional attires to chic everyday streetwear, elevate your wardrobe with premium pieces crafted to fit you flawlessly.
             </p>
           </motion.div>
 
