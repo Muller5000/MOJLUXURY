@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, Search, ShoppingBag, X } from 'lucide-react';
+import { Menu, Search, ShoppingBag, X, Heart } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 interface NavbarProps {
@@ -7,9 +7,11 @@ interface NavbarProps {
   cartCount?: number;
   onCartClick?: () => void;
   onTrackOrderClick?: () => void;
+  wishlistCount?: number;
+  onWishlistClick?: () => void;
 }
 
-export function Navbar({ onScrollToSection, cartCount = 0, onCartClick, onTrackOrderClick }: NavbarProps) {
+export function Navbar({ onScrollToSection, cartCount = 0, onCartClick, onTrackOrderClick, wishlistCount = 0, onWishlistClick }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -86,6 +88,17 @@ export function Navbar({ onScrollToSection, cartCount = 0, onCartClick, onTrackO
               </div>
               <button className="text-gray-900 hover:text-amber-700 transition-colors">
                 <Search size={20} />
+              </button>
+              <button 
+                onClick={onWishlistClick} 
+                className="text-gray-900 hover:text-amber-700 transition-colors relative cursor-pointer hidden sm:block"
+              >
+                <Heart size={20} />
+                {wishlistCount > 0 && (
+                  <span className="absolute -top-1.5 -right-2 bg-amber-900 text-white text-[9px] w-4.5 h-4.5 flex items-center justify-center rounded-full font-bold">
+                    {wishlistCount}
+                  </span>
+                )}
               </button>
               <button 
                 onClick={onCartClick} 

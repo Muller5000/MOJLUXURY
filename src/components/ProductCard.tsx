@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { motion } from 'motion/react';
+import { Heart } from 'lucide-react';
 import { Product } from '../types';
 
 interface ProductCardProps {
@@ -8,9 +9,11 @@ interface ProductCardProps {
   onBespokeClick?: (product: Product) => void;
   onSizeGuideClick?: () => void;
   onQuickView?: (product: Product) => void;
+  isWishlisted?: boolean;
+  onToggleWishlist?: (product: Product) => void;
 }
 
-export function ProductCard({ product, onOrderClick, onBespokeClick, onSizeGuideClick, onQuickView }: ProductCardProps) {
+export function ProductCard({ product, onOrderClick, onBespokeClick, onSizeGuideClick, onQuickView, isWishlisted = false, onToggleWishlist }: ProductCardProps) {
   
   const handleOrderClick = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -70,9 +73,23 @@ export function ProductCard({ product, onOrderClick, onBespokeClick, onSizeGuide
 
         {/* Quick Sizing overlay */}
         {product.fabric && (
-          <span className="absolute top-3 right-3 text-[9px] bg-black/60 text-white font-medium px-2.5 py-1 rounded-full backdrop-blur-sm z-10">
+          <span className="absolute top-3 right-14 text-[9px] bg-black/60 text-white font-medium px-2.5 py-1 rounded-full backdrop-blur-sm z-10">
             {product.fabric}
           </span>
+        )}
+
+        {/* Wishlist Toggle Button */}
+        {onToggleWishlist && (
+          <button 
+            onClick={(e) => { e.stopPropagation(); onToggleWishlist(product); }}
+            className="absolute top-3 right-3 bg-white/80 hover:bg-white p-2 rounded-full shadow-sm backdrop-blur-sm z-10 transition-transform active:scale-90"
+            aria-label="Toggle Wishlist"
+          >
+            <Heart 
+              size={16} 
+              className={`transition-colors ${isWishlisted ? 'fill-red-500 text-red-500' : 'text-gray-600'}`} 
+            />
+          </button>
         )}
 
         {/* --- GLASSMORPHIC HOVER REVEAL PANEL --- */}

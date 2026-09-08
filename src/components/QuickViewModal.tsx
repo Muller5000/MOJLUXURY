@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { Heart } from 'lucide-react';
 import { Product } from '../types';
 
 interface QuickViewModalProps {
@@ -8,9 +9,11 @@ interface QuickViewModalProps {
   onClose: () => void;
   onAddToCart: (product: Product, size?: string) => void;
   onBespokeClick?: (product: Product) => void;
+  isWishlisted?: boolean;
+  onToggleWishlist?: (product: Product) => void;
 }
 
-export function QuickViewModal({ product, isOpen, onClose, onAddToCart, onBespokeClick }: QuickViewModalProps) {
+export function QuickViewModal({ product, isOpen, onClose, onAddToCart, onBespokeClick, isWishlisted = false, onToggleWishlist }: QuickViewModalProps) {
   if (!product) return null;
 
   return (
@@ -86,15 +89,30 @@ export function QuickViewModal({ product, isOpen, onClose, onAddToCart, onBespok
               </div>
 
               <div className="mt-auto space-y-3">
-                <button 
-                  onClick={() => { onAddToCart(product); onClose(); }}
-                  className="w-full bg-black hover:bg-amber-950 text-white font-semibold uppercase tracking-widest text-sm py-4 rounded-lg transition-colors flex items-center justify-center gap-2 shadow-md"
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                  </svg>
-                  Add to Cart
-                </button>
+                <div className="flex gap-2">
+                  <button 
+                    onClick={() => { onAddToCart(product); onClose(); }}
+                    className="flex-1 bg-black hover:bg-amber-950 text-white font-semibold uppercase tracking-widest text-sm py-4 rounded-lg transition-colors flex items-center justify-center gap-2 shadow-md"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    Add to Cart
+                  </button>
+                  {onToggleWishlist && (
+                    <button 
+                      onClick={() => onToggleWishlist(product)}
+                      className={`px-5 rounded-lg border flex items-center justify-center transition-colors ${
+                        isWishlisted 
+                          ? 'border-red-200 bg-red-50 text-red-500' 
+                          : 'border-gray-200 bg-white text-gray-400 hover:text-gray-900 hover:border-gray-300'
+                      }`}
+                      aria-label="Toggle Wishlist"
+                    >
+                      <Heart className={isWishlisted ? 'fill-red-500' : ''} size={24} />
+                    </button>
+                  )}
+                </div>
                 
                 {product.isBespoke && onBespokeClick && (
                   <button 

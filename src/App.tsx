@@ -19,6 +19,7 @@ import { InfoHub } from './components/InfoHub';
 import { AdminDashboard } from './components/AdminDashboard';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { QuickViewModal } from './components/QuickViewModal';
+import { WishlistDrawer } from './components/WishlistDrawer';
 import { allCatalogProducts } from './data/products';
 import { Product, CartItem, CustomMeasurements } from './types';
 
@@ -31,6 +32,10 @@ export default function App() {
   const [isSizeGuideOpen, setIsSizeGuideOpen] = useState(false);
   const [selectedBespokeProduct, setSelectedBespokeProduct] = useState<Product | null>(null);
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
+
+  // Wishlist State
+  const [wishlist, setWishlist] = useState<Product[]>([]);
+  const [isWishlistDrawerOpen, setIsWishlistDrawerOpen] = useState(false);
 
   // Community Slider Ref & Data
   const communitySliderRef = useRef<HTMLDivElement>(null);
@@ -167,6 +172,31 @@ export default function App() {
     return () => window.removeEventListener('hashchange', onHashChange);
   }, []);
 
+  // --- Wishlist Persistence ---
+  useEffect(() => {
+    const savedWishlist = localStorage.getItem('moj_luxury_wishlist');
+    if (savedWishlist) {
+      try {
+        setWishlist(JSON.parse(savedWishlist));
+      } catch (e) {
+        console.error("Failed to parse wishlist from local storage", e);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('moj_luxury_wishlist', JSON.stringify(wishlist));
+  }, [wishlist]);
+
+  const toggleWishlist = (product: Product) => {
+    setWishlist(prev => {
+      if (prev.find(item => item.id === product.id)) {
+        return prev.filter(item => item.id !== product.id);
+      }
+      return [...prev, product];
+    });
+  };
+
   // Fetch Live Products from Supabase
   useEffect(() => {
     const fetchProducts = async () => {
@@ -182,8 +212,8 @@ export default function App() {
         })) as Product[];
         const dbFeatured = mapped.filter(p => p.category === 'featured');
         const dbDresses = mapped.filter(p => p.category === 'dresses');
-        if (dbFeatured.length > 0) setLiveFeatured(dbFeatured);
-        if (dbDresses.length > 0) setLiveDresses(dbDresses);
+        // if (dbFeatured.length > 0) setLiveFeatured(dbFeatured);
+        // if (dbDresses.length > 0) setLiveDresses(dbDresses);
       }
     };
     fetchProducts();
@@ -352,6 +382,8 @@ export default function App() {
         cartCount={cart.reduce((acc, item) => acc + item.quantity, 0)}
         onCartClick={() => setIsCartOpen(true)}
         onTrackOrderClick={() => setIsTrackerOpen(true)}
+        wishlistCount={wishlist.length}
+        onWishlistClick={() => setIsWishlistDrawerOpen(true)}
       />
       
       <main className="flex-1">
@@ -423,6 +455,8 @@ export default function App() {
                   onBespokeClick={triggerBespokeModal}
                   onSizeGuideClick={triggerSizeGuide}
                   onQuickView={(p) => setQuickViewProduct(p)}
+                  isWishlisted={wishlist.some(item => item.id === product.id)}
+                  onToggleWishlist={(p) => toggleWishlist(p)}
                 />
               ))}
             </motion.div>
@@ -612,9 +646,23 @@ export default function App() {
           onClose={() => setQuickViewProduct(null)} 
           onAddToCart={(p) => setSelectedSizeProduct(p)}
           onBespokeClick={triggerBespokeModal}
+          isWishlisted={quickViewProduct ? wishlist.some(item => item.id === quickViewProduct.id) : false}
+          onToggleWishlist={(p) => toggleWishlist(p)}
         />
         
       </main>
+      
+      {/* WISHLIST DRAWER */}
+      <WishlistDrawer
+        isOpen={isWishlistDrawerOpen}
+        onClose={() => setIsWishlistDrawerOpen(false)}
+        wishlistItems={wishlist}
+        onRemoveItem={(id) => setWishlist(prev => prev.filter(item => item.id !== id))}
+        onMoveToCart={(product) => {
+          setSelectedSizeProduct(product);
+          setIsWishlistDrawerOpen(false);
+        }}
+      />
       
       {/* INTERACTIVE INFO HUB */}
       <InfoHub />
