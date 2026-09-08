@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { motion } from 'motion/react';
 import { Heart } from 'lucide-react';
 import { Product } from '../types';
@@ -22,6 +22,21 @@ export function ProductCard({ product, onOrderClick, onBespokeClick, onSizeGuide
     }
   };
 
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handleMouseEnter = () => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+      // Optional: reset to beginning videoRef.current.currentTime = 0;
+    }
+  };
+
   // Generate stable pseudo-random social proof data based on product id
   const { rating, reviews, isLowStock, lowStockCount } = useMemo(() => {
     const hash = product.id.toString().split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
@@ -39,18 +54,33 @@ export function ProductCard({ product, onOrderClick, onBespokeClick, onSizeGuide
       whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
       viewport={{ once: true, margin: "-50px" }}
       className="group cursor-pointer flex flex-col relative w-full"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       {/* Product Image with Interactive Glassmorphic Overlay */}
       <div className="relative w-full aspect-[3/4] overflow-hidden bg-gray-100 mb-4 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-500">
         <img 
           src={product.imageUrl} 
           alt={product.name}
-          className={`w-full h-full object-cover transition-all duration-700 ease-out ${product.hoverImageUrl ? 'group-hover:opacity-0' : 'group-hover:scale-125'}`}
+          className={`w-full h-full object-cover transition-all duration-700 ease-out ${
+            (product.hoverImageUrl || product.hoverVideoUrl) ? 'group-hover:opacity-0' : 'group-hover:scale-125'
+          }`}
         />
         {product.hoverImageUrl && (
           <img 
             src={product.hoverImageUrl} 
             alt={`${product.name} alternate view`}
+            className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-out scale-100"
+          />
+        )}
+        
+        {product.hoverVideoUrl && (
+          <video
+            ref={videoRef}
+            src={product.hoverVideoUrl}
+            muted
+            loop
+            playsInline
             className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-out scale-100"
           />
         )}

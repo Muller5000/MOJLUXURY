@@ -10,6 +10,7 @@ import eve2 from '../assets/hero_carousel_7.jpg';
 import eve3 from '../assets/hero_carousel_8.jpg';
 import tailor1 from '../assets/hero_carousel_1.jpg';
 import tailor2 from '../assets/hero_carousel_2.jpg';
+import demoVideo from '../assets/atelier_video.mp4';
 
 export const essentialsEdit: Product[] = [
   {
@@ -17,6 +18,7 @@ export const essentialsEdit: Product[] = [
     name: 'THE EVERYDAY LINEN TROUSER',
     price: 32000,
     imageUrl: ess1,
+    hoverVideoUrl: demoVideo,
     category: 'Essentials',
     badge: 'Best Seller',
     badgeColor: 'bg-gray-100 text-gray-800 border-gray-200',
