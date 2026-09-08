@@ -1,40 +1,93 @@
-import React from 'react';
-import { motion } from 'motion/react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import heroImage1 from '../assets/hero_carousel_1.jpg';
+import heroImage2 from '../assets/hero_carousel_2.jpg';
+import heroImage3 from '../assets/hero_carousel_3.jpg';
+
+const images = [heroImage1, heroImage2, heroImage3];
 
 export function Hero() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 5000); // Change image every 5 seconds
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <div className="relative w-full h-[70vh] md:h-[85vh] bg-gray-900 overflow-hidden">
-      <motion.img 
-        initial={{ scale: 1.1 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 10, ease: "easeOut" }}
-        src="https://images.unsplash.com/photo-1584288079854-521b369cc20c?auto=format&fit=crop&q=80" 
-        alt="African Heritage Collection"
-        className="w-full h-full object-cover opacity-90 object-top"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end justify-center pb-24 md:pb-32">
-        <div className="text-center px-4 w-full max-w-4xl">
-          <motion.h1 
+    <div className="w-full bg-[#1b1512] text-white relative overflow-hidden h-[75vh] sm:h-[80vh] lg:h-[88vh] flex items-center justify-center">
+      
+      {/* 1. Moving Background Image Carousel */}
+      <div className="absolute inset-0 z-0 bg-[#120e0d]">
+        <AnimatePresence>
+          <motion.img
+            key={currentIndex}
+            src={images[currentIndex]}
+            alt="Hero Carousel"
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+            className="absolute inset-0 w-full h-full object-cover object-top"
+          />
+        </AnimatePresence>
+
+        {/* Premium Dark Vignette Overlay for High Text Contrast */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/45 to-black/75 z-10"></div>
+        <div className="absolute inset-0 opacity-5 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none z-10"></div>
+      </div>
+
+      {/* 2. Brand Text & CTA Overlay Content */}
+      <div className="relative z-20 max-w-[1440px] mx-auto h-full flex flex-col justify-center items-center text-center px-6 sm:px-12 md:px-16">
+        
+        <div className="space-y-6 max-w-2xl">
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            className="text-white text-4xl md:text-6xl lg:text-7xl font-serif tracking-wider mb-8 drop-shadow-2xl flex flex-col gap-2"
+            transition={{ duration: 0.8 }}
+            className="space-y-4"
           >
-            <span className="font-bold">MOJLUXURY</span>
-            <span className="text-xl md:text-3xl tracking-[0.2em] font-light mt-2">TRADITIONAL ELEGANCE</span>
-          </motion.h1>
+            <span className="text-xs text-amber-400 uppercase tracking-[0.3em] font-bold block">
+              Exclusive New Drop
+            </span>
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-serif tracking-tight uppercase leading-[1.1] text-white drop-shadow-lg">
+              Traditional <br />
+              <span className="text-amber-500 font-bold block mt-1">Elegance</span>
+            </h1>
+            <p className="text-amber-100/90 text-base sm:text-lg font-serif italic leading-loose max-w-xl mx-auto drop-shadow-md">
+              Step into your landmark moments styled in premium handcrafted Gele, Mikado silks, and Ankara prints draped to fit you flawlessly.
+            </p>
+          </motion.div>
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="pt-4"
           >
             <a 
-              href="#" 
-              className="inline-block bg-white text-black font-bold px-10 py-4 text-sm tracking-widest uppercase hover:bg-[#e32828] hover:text-white hover:border-[#e32828] transition-colors duration-300 shadow-[0_0_20px_rgba(255,255,255,0.3)] border border-transparent"
+              href="#products-section" 
+              className="inline-block bg-white text-amber-950 font-bold px-8 py-4 text-xs tracking-widest uppercase hover:bg-amber-100 hover:scale-105 active:scale-95 transition-all duration-300 shadow-xl rounded"
             >
               Shop The Collection
             </a>
           </motion.div>
+        </div>
+
+        {/* 3. Carousel Indicators */}
+        <div className="absolute bottom-8 z-20 flex space-x-3">
+          {images.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentIndex(idx)}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                idx === currentIndex ? "w-8 bg-amber-400" : "w-2 bg-white/40 hover:bg-white/70"
+              }`}
+              aria-label={`Go to slide ${idx + 1}`}
+            />
+          ))}
         </div>
       </div>
     </div>

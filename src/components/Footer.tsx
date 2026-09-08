@@ -1,6 +1,9 @@
-import React from 'react';
+interface FooterProps {
+  onScrollToSection?: (sectionId: string) => void;
+  onSizeGuideClick?: () => void;
+}
 
-export function Footer() {
+export function Footer({ onScrollToSection, onSizeGuideClick }: FooterProps) {
   return (
     <footer className="bg-[#f9f9f9] pt-16 pb-8 border-t border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -28,13 +31,37 @@ export function Footer() {
           <div>
             <h3 className="text-sm font-semibold tracking-widest uppercase mb-6 text-gray-900">Info</h3>
             <ul className="space-y-4">
-              <li><a href="#" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Ready To Wear</a></li>
-              <li><a href="#" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Contact Us</a></li>
-              <li><a href="#" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">About Us</a></li>
-              <li><a href="#" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">FAQs</a></li>
-              <li><a href="#" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Shipping and Returns</a></li>
-              <li><a href="#" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Size Guide</a></li>
-              <li><a href="#" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Privacy Policy</a></li>
+              <li><a href="#products-section" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Ready To Wear</a></li>
+              <li>
+                <button onClick={() => onScrollToSection?.('contact-section')} className="text-sm text-gray-500 hover:text-gray-900 transition-colors text-left block w-full">
+                  Contact Us
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onScrollToSection?.('about-story-section')} className="text-sm text-gray-500 hover:text-gray-900 transition-colors text-left block w-full">
+                  About Us
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onScrollToSection?.('faqs-section')} className="text-sm text-gray-500 hover:text-gray-900 transition-colors text-left block w-full">
+                  FAQs
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onScrollToSection?.('shipping-returns-section')} className="text-sm text-gray-500 hover:text-gray-900 transition-colors text-left block w-full">
+                  Shipping and Returns
+                </button>
+              </li>
+              <li>
+                <button onClick={onSizeGuideClick} className="text-sm text-gray-500 hover:text-gray-900 transition-colors text-left block w-full">
+                  Size Guide
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onScrollToSection?.('privacy-terms-section')} className="text-sm text-gray-500 hover:text-gray-900 transition-colors text-left block w-full">
+                  Privacy Policy
+                </button>
+              </li>
             </ul>
           </div>
 
@@ -61,6 +88,25 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Local payment partners bar */}
+        <div className="py-6 border-t border-gray-200/60 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex flex-col items-center md:items-start">
+            <span className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest block mb-2">Secure Local & International Payments</span>
+            <div className="flex flex-wrap gap-3 items-center opacity-70">
+              <span className="text-[10px] font-bold border border-gray-200 px-2 py-1 bg-white text-gray-500 tracking-wider uppercase rounded">Paystack</span>
+              <span className="text-[10px] font-bold border border-gray-200 px-2 py-1 bg-white text-gray-500 tracking-wider uppercase rounded">Flutterwave</span>
+              <span className="text-[10px] font-bold border border-gray-200 px-2 py-1 bg-white text-gray-500 tracking-wider uppercase rounded">Bank Transfer</span>
+              <span className="text-[10px] font-bold border border-gray-200 px-2 py-1 bg-white text-gray-500 tracking-wider uppercase rounded">Cash on Delivery</span>
+            </div>
+          </div>
+          <div className="flex flex-col items-center md:items-end">
+            <span className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest block mb-2">Shipping Partner</span>
+            <div className="flex gap-2 items-center opacity-70">
+              <span className="text-[10px] font-bold border border-yellow-300 px-2.5 py-1 bg-yellow-50 text-amber-900 tracking-wider uppercase rounded">DHL Express</span>
+            </div>
+          </div>
+        </div>
+
         <div className="flex flex-col md:flex-row justify-between items-center py-6 border-t border-gray-200">
           <div className="mb-4 md:mb-0">
             <select defaultValue="NGN" className="bg-transparent text-xs font-semibold tracking-widest uppercase border-none focus:ring-0 cursor-pointer">
@@ -69,7 +115,7 @@ export function Footer() {
             </select>
           </div>
           <div className="tracking-widest text-xs uppercase text-gray-500">
-            © MOJLUXURY
+            &copy; {new Date().getFullYear()} MOJLUXURY
           </div>
         </div>
       </div>
