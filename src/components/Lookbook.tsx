@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { allCatalogProducts } from '../data/products';
+import { Product } from '../types';
 
 interface LookbookItem {
   id: string;
@@ -8,9 +10,10 @@ interface LookbookItem {
   description: string;
   imageUrl: string;
   accentColor: string;
+  hotspots?: { x: number; y: number; productId: string }[];
 }
 
-export function Lookbook() {
+export function Lookbook({ onQuickView }: { onQuickView?: (product: Product) => void }) {
   const lookbookItems: LookbookItem[] = [
     {
       id: 'owambe',
@@ -19,6 +22,7 @@ export function Lookbook() {
       description: 'Handcrafted premium velvet, mikado silk, and traditional silhouettes that command attention. Live your magic and own the room.',
       imageUrl: '/images/Beautiful_Nigerian_woman_wearing_a_202605290957.jpeg',
       accentColor: 'from-purple-900 to-indigo-900',
+      hotspots: [{ x: 50, y: 70, productId: 'eve-01' }], // Maps to velvet cocktail for demo
     },
     {
       id: 'corporate',
@@ -27,6 +31,7 @@ export function Lookbook() {
       description: 'Clean-cut, powerful coords and structured stretch-crepe midi dresses tailored to display absolute authority, grace, and confidence.',
       imageUrl: '/images/Stylish_Nigerian_businesswoman_wearing_a_202605291126.jpeg',
       accentColor: 'from-amber-950 to-amber-900',
+      hotspots: [{ x: 45, y: 60, productId: 'tailor-01' }], // Maps to power suit
     },
     {
       id: 'sunday',
@@ -35,6 +40,7 @@ export function Lookbook() {
       description: 'Sophisticated amethyst purple dresses and flowy cuts suitable for services, family gatherings, and upscale Sunday brunches.',
       imageUrl: '/images/Beautiful_Nigerian_woman_in_a_202605291051.jpeg',
       accentColor: 'from-violet-950 to-purple-950',
+      hotspots: [{ x: 55, y: 50, productId: 'eve-02' }], // Maps to evening gown
     },
     {
       id: 'casual',
@@ -43,6 +49,7 @@ export function Lookbook() {
       description: 'Effortless linen shift dresses, airy coordinates, and breathable fabrics perfect for the tropical climate and weekend strolls.',
       imageUrl: '/images/Ultra-realistic_Nigerian_female_fashion_model_202605290956.jpeg',
       accentColor: 'from-emerald-950 to-teal-950',
+      hotspots: [{ x: 48, y: 65, productId: 'ess-02' }], // Maps to slip dress
     },
   ];
 
@@ -87,8 +94,37 @@ export function Lookbook() {
             </AnimatePresence>
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
             
+            {/* Interactive Hotspots */}
+            <AnimatePresence>
+              {activeSlide.hotspots?.map((spot, i) => (
+                <motion.button
+                  key={`${activeSlide.id}-spot-${i}`}
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0, opacity: 0 }}
+                  transition={{ delay: 0.3 }}
+                  onClick={() => {
+                    if (onQuickView) {
+                      const product = allCatalogProducts.find(p => p.id === spot.productId);
+                      if (product) onQuickView(product);
+                    }
+                  }}
+                  style={{ top: `${spot.y}%`, left: `${spot.x}%` }}
+                  className="absolute z-30 w-8 h-8 -ml-4 -mt-4 bg-white/30 rounded-full flex items-center justify-center group/hotspot"
+                >
+                  <div className="w-3 h-3 bg-white rounded-full shadow-lg shadow-black group-hover/hotspot:scale-150 transition-transform duration-300" />
+                  <div className="absolute inset-0 border border-white rounded-full animate-ping opacity-75" />
+                  
+                  {/* Tooltip */}
+                  <div className="absolute top-10 whitespace-nowrap bg-white text-gray-900 text-[10px] font-bold tracking-widest uppercase px-3 py-1.5 rounded shadow-xl opacity-0 group-hover/hotspot:opacity-100 transition-opacity duration-300 pointer-events-none">
+                    Shop The Look
+                  </div>
+                </motion.button>
+              ))}
+            </AnimatePresence>
+
             {/* Visual Title Overlays */}
-            <div className="absolute bottom-6 left-6 right-6">
+            <div className="absolute bottom-6 left-6 right-6 z-20 pointer-events-none">
               <span className="text-xs text-amber-400 font-semibold tracking-widest uppercase block mb-1">{activeSlide.tagline}</span>
               <h3 className="font-serif text-2xl md:text-3xl text-white">{activeSlide.title}</h3>
             </div>

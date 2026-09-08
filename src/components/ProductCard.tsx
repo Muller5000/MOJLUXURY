@@ -7,9 +7,10 @@ interface ProductCardProps {
   onOrderClick?: (product: Product) => void;
   onBespokeClick?: (product: Product) => void;
   onSizeGuideClick?: () => void;
+  onQuickView?: (product: Product) => void;
 }
 
-export function ProductCard({ product, onOrderClick, onBespokeClick, onSizeGuideClick }: ProductCardProps) {
+export function ProductCard({ product, onOrderClick, onBespokeClick, onSizeGuideClick, onQuickView }: ProductCardProps) {
   
   const handleOrderClick = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -76,15 +77,20 @@ export function ProductCard({ product, onOrderClick, onBespokeClick, onSizeGuide
 
         {/* --- GLASSMORPHIC HOVER REVEAL PANEL --- */}
         <div className="absolute bottom-0 left-0 right-0 p-4 bg-white/70 backdrop-blur-md border-t border-white/50 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] flex flex-col gap-2 z-20">
-          <button 
-            onClick={handleOrderClick}
-            className="w-full bg-black hover:bg-amber-950 text-white font-semibold uppercase tracking-widest text-[10px] py-3 rounded transition-all duration-300 flex items-center justify-center gap-1.5 shadow-md active:scale-95"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-            </svg>
-            Add to Cart
-          </button>
+          <div className="flex gap-2">
+            <button 
+              onClick={(e) => { e.stopPropagation(); if(onQuickView) onQuickView(product); }}
+              className="flex-1 bg-white hover:bg-gray-50 text-gray-800 font-semibold uppercase tracking-widest text-[10px] py-3 rounded shadow-sm border border-gray-200 transition-colors"
+            >
+              Quick View
+            </button>
+            <button 
+              onClick={handleOrderClick}
+              className="flex-1 bg-black hover:bg-amber-950 text-white font-semibold uppercase tracking-widest text-[10px] py-3 rounded transition-all duration-300 flex items-center justify-center gap-1.5 shadow-md active:scale-95"
+            >
+              Add to Cart
+            </button>
+          </div>
 
           <div className="flex gap-2">
             {onSizeGuideClick && (

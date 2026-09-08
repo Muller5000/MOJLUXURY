@@ -18,6 +18,7 @@ import { Lookbook } from './components/Lookbook';
 import { InfoHub } from './components/InfoHub';
 import { AdminDashboard } from './components/AdminDashboard';
 import { ErrorBoundary } from './components/ErrorBoundary';
+import { QuickViewModal } from './components/QuickViewModal';
 import { allCatalogProducts } from './data/products';
 import { Product, CartItem, CustomMeasurements } from './types';
 
@@ -29,6 +30,7 @@ export default function App() {
   
   const [isSizeGuideOpen, setIsSizeGuideOpen] = useState(false);
   const [selectedBespokeProduct, setSelectedBespokeProduct] = useState<Product | null>(null);
+  const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
 
   // Community Slider Ref & Data
   const communitySliderRef = useRef<HTMLDivElement>(null);
@@ -420,6 +422,7 @@ export default function App() {
                   onOrderClick={(p) => setSelectedSizeProduct(p)}
                   onBespokeClick={triggerBespokeModal}
                   onSizeGuideClick={triggerSizeGuide}
+                  onQuickView={(p) => setQuickViewProduct(p)}
                 />
               ))}
             </motion.div>
@@ -440,7 +443,7 @@ export default function App() {
           viewport={{ once: true, amount: 0.05 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <Lookbook />
+          <Lookbook onQuickView={(p) => setQuickViewProduct(p)} />
         </motion.div>
 
         {/* CUSTOM TAILORING / BESPOKE INTRO BANNER */}
@@ -602,6 +605,15 @@ export default function App() {
           </div>
         </section>
 
+        {/* MOJ LUXURY QUICK VIEW MODAL */}
+        <QuickViewModal 
+          isOpen={!!quickViewProduct} 
+          product={quickViewProduct} 
+          onClose={() => setQuickViewProduct(null)} 
+          onAddToCart={(p) => setSelectedSizeProduct(p)}
+          onBespokeClick={triggerBespokeModal}
+        />
+        
       </main>
       
       {/* INTERACTIVE INFO HUB */}
