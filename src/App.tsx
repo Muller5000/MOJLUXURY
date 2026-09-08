@@ -18,14 +18,15 @@ import { Lookbook } from './components/Lookbook';
 import { InfoHub } from './components/InfoHub';
 import { AdminDashboard } from './components/AdminDashboard';
 import { ErrorBoundary } from './components/ErrorBoundary';
-import { essentialsEdit, modernDenim, eveningGlamour, bespokeTailoring } from './data/products';
+import { allCatalogProducts } from './data/products';
 import { Product, CartItem, CustomMeasurements } from './types';
 
 export default function App() {
   const [currentRoute, setCurrentRoute] = useState(window.location.hash);
-  const [liveFeatured, setLiveFeatured] = useState<Product[]>([]);
-  const [liveDresses, setLiveDresses] = useState<Product[]>([]);
-
+  
+  // Category Filtering State
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  
   const [isSizeGuideOpen, setIsSizeGuideOpen] = useState(false);
   const [selectedBespokeProduct, setSelectedBespokeProduct] = useState<Product | null>(null);
 
@@ -320,6 +321,18 @@ export default function App() {
     }
   };
 
+  const categories = [
+    { value: 'all', label: 'All Collections' },
+    { value: 'Essentials', label: 'The Essentials Edit' },
+    { value: 'Denim', label: 'Modern Denim' },
+    { value: 'Evening', label: 'Evening Glamour' },
+    { value: 'Tailoring', label: 'Bespoke Tailoring' },
+  ];
+
+  const filteredProducts = selectedCategory === 'all' 
+    ? allCatalogProducts
+    : allCatalogProducts.filter(p => p.category === selectedCategory);
+
   const triggerBespokeModal = (product: Product) => {
     setSelectedBespokeProduct(product);
   };
@@ -373,27 +386,34 @@ export default function App() {
             </button>
           </div>
 
-          {/* Curated Collection: Essentials */}
-          <div className="mb-20">
-            <h3 className="text-3xl font-serif text-center uppercase tracking-widest mb-10">The Essentials Edit</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
-              {essentialsEdit.map((product) => (
-                <ProductCard 
-                  key={product.id} 
-                  product={product} 
-                  onOrderClick={(p) => setSelectedSizeProduct(p)}
-                  onBespokeClick={triggerBespokeModal}
-                  onSizeGuideClick={triggerSizeGuide}
-                />
-              ))}
-            </div>
+          {/* Category Tabs */}
+          <div className="flex flex-wrap justify-center gap-2 mb-16">
+            {categories.map((cat) => (
+              <button
+                key={cat.value}
+                onClick={() => setSelectedCategory(cat.value)}
+                className={`px-5 py-2.5 text-xs font-semibold uppercase tracking-wider rounded-full transition-all duration-300 ${
+                  selectedCategory === cat.value
+                    ? 'bg-amber-950 text-white shadow-md'
+                    : 'bg-white border border-gray-100 text-gray-600 hover:bg-amber-50/40 hover:text-amber-950'
+                }`}
+              >
+                {cat.label}
+              </button>
+            ))}
           </div>
 
-          {/* Curated Collection: Denim & Streetwear */}
-          <div className="mb-20">
-            <h3 className="text-3xl font-serif text-center uppercase tracking-widest mb-10">Modern Streetwear & Denim</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-12 max-w-4xl mx-auto">
-              {modernDenim.map((product) => (
+          {/* Products Grid */}
+          <AnimatePresence mode="wait">
+            <motion.div 
+              key={selectedCategory}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.3 }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12"
+            >
+              {filteredProducts.map((product) => (
                 <ProductCard 
                   key={product.id} 
                   product={product} 
@@ -402,40 +422,14 @@ export default function App() {
                   onSizeGuideClick={triggerSizeGuide}
                 />
               ))}
-            </div>
-          </div>
+            </motion.div>
+          </AnimatePresence>
 
-          {/* Curated Collection: Evening Glamour */}
-          <div className="mb-20">
-            <h3 className="text-3xl font-serif text-center uppercase tracking-widest mb-10">Evening Glamour</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
-              {eveningGlamour.map((product) => (
-                <ProductCard 
-                  key={product.id} 
-                  product={product} 
-                  onOrderClick={(p) => setSelectedSizeProduct(p)}
-                  onBespokeClick={triggerBespokeModal}
-                  onSizeGuideClick={triggerSizeGuide}
-                />
-              ))}
+          {filteredProducts.length === 0 && (
+            <div className="text-center py-12 text-gray-500 font-serif italic">
+              No garments are currently categorized under this collection. Check back soon!
             </div>
-          </div>
-
-          {/* Curated Collection: Bespoke Tailoring */}
-          <div className="mb-10">
-            <h3 className="text-3xl font-serif text-center uppercase tracking-widest mb-10">Bespoke Tailoring</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-12 max-w-4xl mx-auto">
-              {bespokeTailoring.map((product) => (
-                <ProductCard 
-                  key={product.id} 
-                  product={product} 
-                  onOrderClick={(p) => setSelectedSizeProduct(p)}
-                  onBespokeClick={triggerBespokeModal}
-                  onSizeGuideClick={triggerSizeGuide}
-                />
-              ))}
-            </div>
-          </div>
+          )}
         </motion.section>
 
         {/* LOOKBOOK SECTION */}
