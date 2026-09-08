@@ -41,8 +41,15 @@ export function ProductCard({ product, onOrderClick, onBespokeClick, onSizeGuide
         <img 
           src={product.imageUrl} 
           alt={product.name}
-          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          className={`w-full h-full object-cover transition-all duration-700 ease-out ${product.hoverImageUrl ? 'group-hover:opacity-0' : 'group-hover:scale-125'}`}
         />
+        {product.hoverImageUrl && (
+          <img 
+            src={product.hoverImageUrl} 
+            alt={`${product.name} alternate view`}
+            className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-out scale-100"
+          />
+        )}
 
         {/* Badge Overlay */}
         {product.badge && (

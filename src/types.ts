@@ -3,6 +3,7 @@ export interface Product {
   name: string;
   price: number;
   imageUrl: string;
+  hoverImageUrl?: string;
   category: string; // E.g., 'featured', 'dresses', 'tops-bottoms', 'sets'
   badge?: string;    // E.g., 'Ready to Wear', 'Pre-Order', 'Bespoke Only'
   badgeColor?: string; // Tailwind class like 'bg-emerald-50 text-emerald-700'
