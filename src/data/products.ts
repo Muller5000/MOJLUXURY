@@ -3,7 +3,9 @@ import { Product } from '../types';
 import ess1 from '../assets/essentials_1.jpg';
 import ess1back from '../assets/essentials_1_back.jpg';
 import ess2 from '../assets/essentials_2.jpg';
+import ess2back from '../assets/essentials_2_back.jpg';
 import ess3 from '../assets/essentials_3.jpg';
+import ess3back from '../assets/essentials_3_back.jpg';
 import denim1 from '../assets/hero_carousel_4.jpg';
 import denim2 from '../assets/hero_carousel_5.jpg';
 import eve1 from '../assets/hero_carousel_6.jpg';
@@ -30,6 +32,7 @@ export const essentialsEdit: Product[] = [
     name: 'NEUTRAL SILK SLIP DRESS',
     price: 45000,
     imageUrl: ess2,
+    hoverImageUrl: ess2back,
     category: 'Essentials',
     badge: 'New Arrival',
     badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-200',
@@ -41,6 +44,7 @@ export const essentialsEdit: Product[] = [
     name: 'OVERSIZED CRISP SHIRT',
     price: 28000,
     imageUrl: ess3,
+    hoverImageUrl: ess3back,
     category: 'Essentials',
     fabric: 'Egyptian Cotton',
     occasion: 'Everyday Essentials'
