@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { ChevronRight, PlayCircle, Plus, Minus, MessageCircle, MapPin, Phone, Instagram, Facebook } from 'lucide-react';
+import heritageImage from '../assets/heritage_image.jpg';
 
 export function InfoHub() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -123,8 +125,8 @@ export function InfoHub() {
             </div>
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-md">
               <img 
-                src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80" 
-                alt="Nigerian Artisans Crafting" 
+                src={heritageImage} 
+                alt="Our Heritage" 
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-6">
