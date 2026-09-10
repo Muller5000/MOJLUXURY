@@ -130,7 +130,7 @@ export function InfoHub() {
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-6">
-                <span className="text-xs text-white uppercase tracking-wider font-semibold">Inside our Victoria Island Design Studio</span>
+                <span className="text-xs text-white uppercase tracking-wider font-semibold">Our Creative Director, Mojisola Ajayi</span>
               </div>
             </div>
           </div>
