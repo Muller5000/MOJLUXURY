@@ -20,6 +20,7 @@ import { AdminDashboard } from './components/AdminDashboard';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { QuickViewModal } from './components/QuickViewModal';
 import { WishlistDrawer } from './components/WishlistDrawer';
+import { BrandPillars } from './components/BrandPillars';
 import { allCatalogProducts } from './data/products';
 import { Product, CartItem, CustomMeasurements } from './types';
 
@@ -354,11 +355,10 @@ export default function App() {
   };
 
   const categories = [
-    { value: 'all', label: 'All Collections' },
-    { value: 'Essentials', label: 'The Essentials Edit' },
-    { value: 'Denim', label: 'Modern Denim' },
-    { value: 'Evening', label: 'Evening Glamour' },
-    { value: 'Tailoring', label: 'Bespoke Tailoring' },
+    { value: 'all', label: 'All Offerings' },
+    { value: 'Ready-To-Wear', label: 'Ready-To-Wear' },
+    { value: 'Clothing Materials', label: 'Clothing Materials' },
+    { value: 'Fashion Academy', label: 'Academy & Masterclasses' },
   ];
 
   const filteredProducts = selectedCategory === 'all' 
@@ -399,10 +399,10 @@ export default function App() {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="text-center mb-12">
-            <span className="text-xs text-amber-800 uppercase tracking-widest font-semibold block mb-1">Curated Collections</span>
-            <h2 className="text-4xl md:text-5xl font-serif tracking-tight uppercase mb-4">Shop By Occasion</h2>
+            <span className="text-xs text-amber-800 uppercase tracking-widest font-semibold block mb-1">Our Offerings</span>
+            <h2 className="text-4xl md:text-5xl font-serif tracking-tight uppercase mb-4">Explore MOJLUXURY</h2>
             <p className="italic text-gray-600 max-w-2xl mx-auto font-serif text-base leading-loose">
-              Discover beautiful, size-inclusive ready-to-wear and bespoke garments crafted to fit your shape flawlessly for Nigeria's most vibrant events.
+              From premium everyday ready-to-wear and high-quality materials to masterclasses that tutor the next generation of designers.
             </p>
           </div>
 
@@ -479,6 +479,9 @@ export default function App() {
         >
           <Lookbook onQuickView={(p) => setQuickViewProduct(p)} />
         </motion.div>
+
+        {/* BRAND PILLARS: RTW, Materials, Academy */}
+        <BrandPillars />
 
         {/* CUSTOM TAILORING / BESPOKE INTRO BANNER */}
         <motion.section 

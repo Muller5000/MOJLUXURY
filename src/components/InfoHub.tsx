@@ -108,19 +108,19 @@ export function InfoHub() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <span className="text-xs text-amber-800 font-bold uppercase tracking-[0.25em] block">
-                Born in Lagos, Tailored for the World
+                Fashion Design Agency & Academy
               </span>
               <h2 className="font-serif text-3xl sm:text-4xl text-gray-900 tracking-wide uppercase leading-tight">
-                Our Story & Heritage
+                Our Story & Mission
               </h2>
               <p className="text-sm text-gray-600 leading-relaxed">
-                MOJLUXURY was founded with a singular, proud vision: to elevate traditional Nigerian couture into contemporary, globally wearable luxury. We reject the fast-fashion narrative of mass manufacturing and standard sizing that excludes the diversity of women's natural curves.
+                MOJLUXURY is a premier Fashion Design Agency. We don't just sell clothes; we curate entire wardrobes. From designing high-quality everyday ready-to-wear pieces that fit flawlessly, to sourcing and supplying premium clothing materials like authentic Adire, silks, and Ankara.
               </p>
               <p className="text-sm text-gray-600 leading-relaxed">
-                Every collection utilizes heritage fabrics—from ethically sourced handwoven <strong>Aso Oke</strong> and premium hand-dyed <strong>Adire</strong>, to heavy-weight Mikado silks and intricately embroidered lace. We support local weavers, artisans, and tailors across Nigeria, keeping our heritage crafts thriving.
+                Beyond creating fashion, our passion is passing down the craft. Through the <strong>MOJLUXURY Fashion Academy</strong>, we tutor and mentor upcoming fashion designers, offering masterclasses in pattern drafting, garment construction, and fashion business management to empower the next generation of global designers.
               </p>
               <div className="border-l-4 border-amber-800/40 pl-4 italic text-sm text-gray-700 font-serif">
-                "Every sleeve we cut, every gele we shape, and every wrapper we fold is an act of storytelling, designed to make you feel like royalty during your landmark moments."
+                "Whether we are drafting a new ready-to-wear collection, sourcing raw materials, or guiding a student through their first stitch, our mission is to elevate fashion at every step of the journey."
               </div>
             </div>
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-md">

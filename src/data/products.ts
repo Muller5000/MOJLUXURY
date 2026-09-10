@@ -7,12 +7,19 @@ import ess2back from '../assets/essentials_2_back.jpg';
 import ess3 from '../assets/essentials_3.jpg';
 import ess3back from '../assets/essentials_3_back.jpg';
 import denim1 from '../assets/hero_carousel_4.jpg';
+import denim1back from '../assets/denim1_back.jpg';
 import denim2 from '../assets/hero_carousel_5.jpg';
+import denim2back from '../assets/denim2_back.jpg';
 import eve1 from '../assets/hero_carousel_6.jpg';
+import eve1back from '../assets/eve1_back.jpg';
 import eve2 from '../assets/hero_carousel_7.jpg';
+import eve2back from '../assets/eve2_back.jpg';
 import eve3 from '../assets/hero_carousel_8.jpg';
+import eve3back from '../assets/eve3_back.jpg';
 import tailor1 from '../assets/hero_carousel_1.jpg';
+import tailor1back from '../assets/tailor1_back.jpg';
 import tailor2 from '../assets/hero_carousel_2.jpg';
+import tailor2back from '../assets/tailor2_back.jpg';
 
 export const essentialsEdit: Product[] = [
   {
@@ -57,6 +64,7 @@ export const modernDenim: Product[] = [
     name: 'TAILORED DENIM JACKET',
     price: 55000,
     imageUrl: denim1,
+    hoverImageUrl: denim1back,
     category: 'Denim',
     badge: 'Limited Edition',
     badgeColor: 'bg-black text-white border-black',
@@ -68,6 +76,7 @@ export const modernDenim: Product[] = [
     name: 'CHIC CARGO DENIM',
     price: 42000,
     imageUrl: denim2,
+    hoverImageUrl: denim2back,
     category: 'Denim',
     fabric: 'Stretch Denim',
     occasion: 'Streetwear'
@@ -80,6 +89,7 @@ export const eveningGlamour: Product[] = [
     name: 'NOIR VELVET COCKTAIL',
     price: 85000,
     imageUrl: eve1,
+    hoverImageUrl: eve1back,
     category: 'Evening',
     badge: 'Bespoke Custom Fit',
     badgeColor: 'bg-purple-100 text-purple-800 border-purple-200',
@@ -92,6 +102,7 @@ export const eveningGlamour: Product[] = [
     name: 'ARCHITECTURAL EVENING GOWN',
     price: 120000,
     imageUrl: eve2,
+    hoverImageUrl: eve2back,
     category: 'Evening',
     fabric: 'Structured Mikado Silk',
     occasion: 'Red Carpet',
@@ -102,6 +113,7 @@ export const eveningGlamour: Product[] = [
     name: 'EMBELLISHED GALA DRESS',
     price: 150000,
     imageUrl: eve3,
+    hoverImageUrl: eve3back,
     category: 'Evening',
     badge: 'Pre-Order',
     badgeColor: 'bg-amber-100 text-amber-800 border-amber-200',
@@ -117,6 +129,7 @@ export const bespokeTailoring: Product[] = [
     name: 'OVERSIZED POWER SUIT',
     price: 95000,
     imageUrl: tailor1,
+    hoverImageUrl: tailor1back,
     category: 'Tailoring',
     badge: 'Bespoke Only',
     badgeColor: 'bg-purple-100 text-purple-800 border-purple-200',
@@ -129,6 +142,7 @@ export const bespokeTailoring: Product[] = [
     name: 'STRUCTURED TRENCH COAT',
     price: 110000,
     imageUrl: tailor2,
+    hoverImageUrl: tailor2back,
     category: 'Tailoring',
     fabric: 'Water-Resistant Gabardine',
     occasion: 'Outerwear',

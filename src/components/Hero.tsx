@@ -63,14 +63,14 @@ export function Hero() {
             className="space-y-4"
           >
             <span className="text-xs text-amber-400 uppercase tracking-[0.3em] font-bold block">
-              The New Standard
+              Premier Fashion Design Agency
             </span>
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-serif tracking-tight uppercase leading-[1.1] text-white drop-shadow-lg">
-              Modern <br />
-              <span className="text-amber-500 font-bold block mt-1">Luxury</span>
+              Design & <br />
+              <span className="text-amber-500 font-bold block mt-1">Academy</span>
             </h1>
             <p className="text-amber-100/90 text-base sm:text-lg font-serif italic leading-loose max-w-xl mx-auto drop-shadow-md">
-              From bespoke traditional attires to chic everyday streetwear, elevate your wardrobe with premium pieces crafted to fit you flawlessly.
+              Crafting premium everyday ready-to-wear, sourcing authentic clothing materials, and tutoring the next generation of global fashion designers.
             </p>
           </motion.div>
 
@@ -78,13 +78,24 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="pt-4"
+            className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <a 
               href="#products-section" 
-              className="inline-block bg-white text-amber-950 font-bold px-8 py-4 text-xs tracking-widest uppercase hover:bg-amber-100 hover:scale-105 active:scale-95 transition-all duration-300 shadow-xl rounded"
+              className="w-full sm:w-auto inline-block bg-white text-amber-950 font-bold px-8 py-4 text-xs tracking-widest uppercase hover:bg-amber-100 hover:scale-105 active:scale-95 transition-all duration-300 shadow-xl rounded text-center"
             >
-              Shop The Collection
+              Shop Collections
+            </a>
+            <a 
+              href="#products-section" 
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('products-section')?.scrollIntoView({ behavior: 'smooth' });
+                // We could dispatch an event or call a context to set category to 'Fashion Academy', but scrolling is enough for now
+              }}
+              className="w-full sm:w-auto inline-block bg-transparent border-2 border-amber-400 text-amber-400 font-bold px-8 py-3.5 text-xs tracking-widest uppercase hover:bg-amber-400 hover:text-amber-950 hover:scale-105 active:scale-95 transition-all duration-300 shadow-xl rounded text-center"
+            >
+              Join Academy
             </a>
           </motion.div>
         </div>
