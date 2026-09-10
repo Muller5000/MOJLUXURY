@@ -129,9 +129,9 @@ export function InfoHub() {
                 alt="Our Heritage" 
                 className="w-full h-full object-cover"
               />
-              <div className="absolute bottom-6 left-6 bg-white/90 backdrop-blur-md rounded-xl p-4 shadow-xl border border-white/20 max-w-[80%]">
-                <span className="block text-xs font-bold text-amber-950 uppercase tracking-widest mb-1">Mojisola Ajayi</span>
-                <span className="block text-[10px] text-amber-700 uppercase tracking-wider font-semibold">Creative Director & Founder</span>
+              <div className="absolute bottom-6 left-6 bg-white/10 backdrop-blur-xl rounded-2xl p-4 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] border border-white/20 max-w-[80%]">
+                <span className="block text-sm font-bold text-white uppercase tracking-widest mb-1 drop-shadow-md">Mojisola Ajayi</span>
+                <span className="block text-[10px] text-amber-300 uppercase tracking-wider font-semibold drop-shadow-md">Creative Director & Founder</span>
               </div>
             </div>
           </div>
