@@ -5,11 +5,11 @@ const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
 
 // Safely initialize the Supabase client
-let supabase: ReturnType<typeof createClient> | null = null;
+let supabase: any = null;
 
 if (supabaseUrl && supabaseAnonKey) {
   try {
-    supabase = createClient(supabaseUrl, supabaseAnonKey);
+    supabase = createClient<any, any, any>(supabaseUrl, supabaseAnonKey);
   } catch (error) {
     console.warn('Failed to initialize Supabase client:', error);
   }

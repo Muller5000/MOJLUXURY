@@ -9,7 +9,7 @@ interface TailoringModalProps {
   onAddBespokeToCart: (product: Product, measurements: CustomMeasurements) => void;
 }
 
-export function TailoringModal({ isOpen, onClose, product }: TailoringModalProps) {
+export function TailoringModal({ isOpen, onClose, product, onAddBespokeToCart }: TailoringModalProps) {
   if (!isOpen) return null;
 
   const [formData, setFormData] = useState({

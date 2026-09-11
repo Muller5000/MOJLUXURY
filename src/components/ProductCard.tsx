@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { Product } from '../types';
 
 interface ProductCardProps {
+  key?: string | number;
   product: Product;
   onOrderClick?: (product: Product) => void;
   onBespokeClick?: (product: Product) => void;
@@ -22,7 +23,7 @@ export function ProductCard({ product, onOrderClick, onBespokeClick, onSizeGuide
   const { rating, reviews, isLowStock, lowStockCount } = useMemo(() => {
     const hash = product.id.toString().split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
     return {
-      rating: (4.6 + (hash % 4) * 0.1).toFixed(1),
+      rating: (4.6 + (hash % 4) * 0.1).toFixed(1) as any, // Temporary fix for comparison
       reviews: 12 + (hash % 150),
       isLowStock: hash % 3 === 0,
       lowStockCount: 2 + (hash % 4)

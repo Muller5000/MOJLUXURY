@@ -49,7 +49,7 @@ export const AdminDashboard = () => {
 
   const updateOrderStatus = async (orderRef: string, newStatus: string) => {
     if (!supabase) return;
-    const { error: updateError } = await supabase.from('orders').update({ status: newStatus }).eq('reference', orderRef);
+    const { error: updateError } = await (supabase.from('orders') as any).update({ status: newStatus }).eq('reference', orderRef);
     if (updateError) return alert('Error updating status: ' + updateError.message);
 
     const logMessages: Record<string, string> = {
@@ -134,7 +134,7 @@ export const AdminDashboard = () => {
         is_pre_order: true
       };
 
-      const { error: dbError } = await supabase.from('products').insert([newProduct]);
+      const { error: dbError } = await (supabase.from('products') as any).insert([newProduct]);
       if (dbError) throw dbError;
 
       alert('Product added successfully!');

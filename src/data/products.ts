@@ -137,3 +137,10 @@ export const allCatalogProducts: Product[] = [
   ...eveningGlamour,
   ...bespokeTailoring
 ];
+
+export const communityPosts = [
+  { id: 1, handle: '@chioma_styles', occasion: 'Lagos Wedding', imageUrl: 'https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&q=80&w=600' },
+  { id: 2, handle: '@zara_fashion', occasion: 'Corporate Event', imageUrl: 'https://images.unsplash.com/photo-1542295669297-4d352b042bce?auto=format&fit=crop&q=80&w=600' },
+  { id: 3, handle: '@amina_beauty', occasion: 'Gala Night', imageUrl: 'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&q=80&w=600' },
+  { id: 4, handle: '@funke_slays', occasion: 'Sunday Service', imageUrl: 'https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?auto=format&fit=crop&q=80&w=600' }
+];
