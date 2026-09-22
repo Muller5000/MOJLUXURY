@@ -132,6 +132,7 @@ export function Lookbook({ onQuickView }: { onQuickView?: (product: Product) => 
             {/* Slider Controls inside Image */}
             <div className="absolute top-1/2 -translate-y-1/2 left-4 right-4 flex justify-between pointer-events-none">
               <button 
+                aria-label="Previous slide"
                 onClick={prevSlide}
                 className="pointer-events-auto bg-black/40 hover:bg-amber-900/80 hover:text-white text-amber-100 p-3 rounded-full backdrop-blur-sm transition-all border border-amber-900/20"
               >
@@ -140,6 +141,7 @@ export function Lookbook({ onQuickView }: { onQuickView?: (product: Product) => 
                 </svg>
               </button>
               <button 
+                aria-label="Next slide"
                 onClick={nextSlide}
                 className="pointer-events-auto bg-black/40 hover:bg-amber-900/80 hover:text-white text-amber-100 p-3 rounded-full backdrop-blur-sm transition-all border border-amber-900/20"
               >
