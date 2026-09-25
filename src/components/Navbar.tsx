@@ -40,7 +40,8 @@ export function Navbar({ onScrollToSection, cartCount = 0, onCartClick, onTrackO
             <div className="flex items-center md:hidden">
               <button 
                 onClick={() => setIsMobileMenuOpen(true)}
-                className="text-gray-900 focus:outline-none"
+                className="text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-700 rounded-sm"
+                aria-label="Open menu"
               >
                 <Menu size={24} />
               </button>
@@ -86,12 +87,16 @@ export function Navbar({ onScrollToSection, cartCount = 0, onCartClick, onTrackO
                   <option value="GBP">GBP £</option>
                 </select>
               </div>
-              <button className="text-gray-900 hover:text-amber-700 transition-colors">
+              <button
+                className="text-gray-900 hover:text-amber-700 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-700 rounded-sm"
+                aria-label="Search"
+              >
                 <Search size={20} />
               </button>
               <button 
                 onClick={onWishlistClick} 
-                className="text-gray-900 hover:text-amber-700 transition-colors relative cursor-pointer hidden sm:block"
+                className="text-gray-900 hover:text-amber-700 transition-colors relative cursor-pointer hidden sm:block focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-700 rounded-sm"
+                aria-label="Wishlist"
               >
                 <Heart size={20} />
                 {wishlistCount > 0 && (
@@ -102,7 +107,8 @@ export function Navbar({ onScrollToSection, cartCount = 0, onCartClick, onTrackO
               </button>
               <button 
                 onClick={onCartClick} 
-                className="text-gray-900 hover:text-amber-700 transition-colors relative cursor-pointer"
+                className="text-gray-900 hover:text-amber-700 transition-colors relative cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-700 rounded-sm"
+                aria-label="Shopping Cart"
               >
                 <ShoppingBag size={20} />
                 {cartCount > 0 && (
@@ -128,7 +134,11 @@ export function Navbar({ onScrollToSection, cartCount = 0, onCartClick, onTrackO
           >
             <div className="p-4 flex justify-between items-center border-b border-gray-100">
               <span className="font-serif text-xl font-bold text-amber-900">MOJLUXURY</span>
-              <button onClick={() => setIsMobileMenuOpen(false)} className="text-gray-500 hover:text-gray-900">
+              <button
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-gray-500 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-700 rounded-sm"
+                aria-label="Close menu"
+              >
                 <X size={24} />
               </button>
             </div>
