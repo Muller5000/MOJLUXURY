@@ -41,6 +41,7 @@ export function Navbar({ onScrollToSection, cartCount = 0, onCartClick, onTrackO
               <button 
                 onClick={() => setIsMobileMenuOpen(true)}
                 className="text-gray-900 focus:outline-none"
+                aria-label="Open menu"
               >
                 <Menu size={24} />
               </button>
@@ -80,16 +81,17 @@ export function Navbar({ onScrollToSection, cartCount = 0, onCartClick, onTrackO
             {/* Right Icons */}
             <div className="flex items-center space-x-4 md:space-x-6">
               <div className="hidden sm:block">
-                <select defaultValue="NGN" className="bg-transparent text-xs font-bold uppercase tracking-widest border-none focus:ring-0 cursor-pointer text-gray-700 focus:outline-none">
+                <select aria-label="Select currency" defaultValue="NGN" className="bg-transparent text-xs font-bold uppercase tracking-widest border-none focus:ring-0 cursor-pointer text-gray-700 focus:outline-none">
                   <option value="NGN">NGN ₦</option>
                   <option value="USD">USD $</option>
                   <option value="GBP">GBP £</option>
                 </select>
               </div>
-              <button className="text-gray-900 hover:text-amber-700 transition-colors">
+              <button aria-label="Search" className="text-gray-900 hover:text-amber-700 transition-colors">
                 <Search size={20} />
               </button>
               <button 
+                aria-label="View wishlist"
                 onClick={onWishlistClick} 
                 className="text-gray-900 hover:text-amber-700 transition-colors relative cursor-pointer hidden sm:block"
               >
@@ -101,6 +103,7 @@ export function Navbar({ onScrollToSection, cartCount = 0, onCartClick, onTrackO
                 )}
               </button>
               <button 
+                aria-label="View cart"
                 onClick={onCartClick} 
                 className="text-gray-900 hover:text-amber-700 transition-colors relative cursor-pointer"
               >
@@ -128,7 +131,7 @@ export function Navbar({ onScrollToSection, cartCount = 0, onCartClick, onTrackO
           >
             <div className="p-4 flex justify-between items-center border-b border-gray-100">
               <span className="font-serif text-xl font-bold text-amber-900">MOJLUXURY</span>
-              <button onClick={() => setIsMobileMenuOpen(false)} className="text-gray-500 hover:text-gray-900">
+              <button aria-label="Close menu" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-500 hover:text-gray-900">
                 <X size={24} />
               </button>
             </div>
