@@ -40,6 +40,7 @@ export function Navbar({ onScrollToSection, cartCount = 0, onCartClick, onTrackO
             <div className="flex items-center md:hidden">
               <button 
                 onClick={() => setIsMobileMenuOpen(true)}
+                aria-label="Open menu"
                 className="text-gray-900 focus:outline-none"
               >
                 <Menu size={24} />
@@ -86,11 +87,12 @@ export function Navbar({ onScrollToSection, cartCount = 0, onCartClick, onTrackO
                   <option value="GBP">GBP £</option>
                 </select>
               </div>
-              <button className="text-gray-900 hover:text-amber-700 transition-colors">
+              <button aria-label="Search" className="text-gray-900 hover:text-amber-700 transition-colors">
                 <Search size={20} />
               </button>
               <button 
                 onClick={onWishlistClick} 
+                aria-label="Wishlist"
                 className="text-gray-900 hover:text-amber-700 transition-colors relative cursor-pointer hidden sm:block"
               >
                 <Heart size={20} />
@@ -102,6 +104,7 @@ export function Navbar({ onScrollToSection, cartCount = 0, onCartClick, onTrackO
               </button>
               <button 
                 onClick={onCartClick} 
+                aria-label="Shopping Cart"
                 className="text-gray-900 hover:text-amber-700 transition-colors relative cursor-pointer"
               >
                 <ShoppingBag size={20} />
@@ -128,7 +131,7 @@ export function Navbar({ onScrollToSection, cartCount = 0, onCartClick, onTrackO
           >
             <div className="p-4 flex justify-between items-center border-b border-gray-100">
               <span className="font-serif text-xl font-bold text-amber-900">MOJLUXURY</span>
-              <button onClick={() => setIsMobileMenuOpen(false)} className="text-gray-500 hover:text-gray-900">
+              <button onClick={() => setIsMobileMenuOpen(false)} aria-label="Close menu" className="text-gray-500 hover:text-gray-900">
                 <X size={24} />
               </button>
             </div>
