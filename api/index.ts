@@ -24,6 +24,11 @@ app.get('/api/health', (req, res) => {
 
 // Paystack Webhook endpoint
 app.post('/api/webhooks/paystack', async (req, res) => {
+  if (!PAYSTACK_SECRET_KEY) {
+    console.error('CRITICAL: PAYSTACK_SECRET_KEY is not configured.');
+    return res.status(500).send('Server configuration error');
+  }
+
   const hash = crypto.createHmac('sha512', PAYSTACK_SECRET_KEY)
                      .update((req as any).rawBody || JSON.stringify(req.body))
                      .digest('hex');
