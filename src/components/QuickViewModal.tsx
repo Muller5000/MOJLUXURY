@@ -37,6 +37,7 @@ export function QuickViewModal({ product, isOpen, onClose, onAddToCart, onBespok
           >
             {/* Close Button */}
             <button 
+              aria-label="Close modal"
               onClick={onClose}
               className="absolute top-4 right-4 z-20 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-sm backdrop-blur transition-all"
             >

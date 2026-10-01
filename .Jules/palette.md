@@ -1,0 +1,3 @@
+## 2024-03-05 - Missing ARIA Labels in Icon Buttons
+**Learning:** Found a widespread pattern across multiple components (Navbar, QuickViewModal, SizingModal, CartDrawer, SizeSelectModal) where icon-only buttons lacked accessible names (ARIA labels). Screen reader users would hear these as empty or generic buttons, severely impacting navigation and usability.
+**Action:** Ensure all interactive elements, especially icon-only buttons, have clear, descriptive `aria-label` attributes to provide context to screen readers. This pattern should be standard practice when designing new components.

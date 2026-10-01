@@ -110,6 +110,7 @@ export function CartDrawer({
                 </span>
               </div>
               <button
+                aria-label="Close cart"
                 onClick={onClose}
                 className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-400 hover:text-gray-950"
               >
@@ -159,6 +160,7 @@ export function CartDrawer({
                                   {item.product.name}
                                 </h4>
                                 <button
+                                  aria-label="Remove item"
                                   onClick={() => onRemoveItem(item.product.id, item.selectedSize, isB)}
                                   className="text-gray-400 hover:text-red-700 transition-colors p-1"
                                 >
@@ -196,6 +198,7 @@ export function CartDrawer({
                               </span>
                               <div className="flex items-center border border-gray-100 rounded-lg overflow-hidden bg-gray-50">
                                 <button
+                                  aria-label="Decrease quantity"
                                   type="button"
                                   onClick={() => onUpdateQuantity(item.product.id, item.selectedSize, isB, -1)}
                                   className="p-1.5 hover:bg-amber-50 hover:text-amber-950 transition-colors text-gray-400"
@@ -206,6 +209,7 @@ export function CartDrawer({
                                   {item.quantity}
                                 </span>
                                 <button
+                                  aria-label="Increase quantity"
                                   type="button"
                                   onClick={() => onUpdateQuantity(item.product.id, item.selectedSize, isB, 1)}
                                   className="p-1.5 hover:bg-amber-50 hover:text-amber-950 transition-colors text-gray-400"
