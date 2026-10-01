@@ -47,6 +47,7 @@ export function SizingModal({ isOpen, onClose }: SizingModalProps) {
             <p className="text-xs text-amber-800 mt-1 uppercase tracking-widest font-semibold">Standard UK / US & Metric Conversions</p>
           </div>
           <button 
+            aria-label="Close sizing guide"
             onClick={onClose}
             className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-400 hover:text-gray-900"
           >

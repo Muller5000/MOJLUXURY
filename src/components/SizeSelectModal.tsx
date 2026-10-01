@@ -72,6 +72,7 @@ export function SizeSelectModal({ isOpen, onClose, product, onAddToCart, onBespo
               <p className="text-sm font-semibold text-gray-900 mt-2">₦{product.price.toLocaleString()}</p>
             </div>
             <button 
+              aria-label="Close size selector"
               onClick={onClose}
               className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-400 hover:text-gray-900 -mt-1 -mr-2"
             >
