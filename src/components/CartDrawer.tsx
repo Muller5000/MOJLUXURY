@@ -111,7 +111,8 @@ export function CartDrawer({
               </div>
               <button
                 onClick={onClose}
-                className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-400 hover:text-gray-950"
+                aria-label="Close cart"
+                className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-400 hover:text-gray-950 focus:outline-none focus-visible:ring-2"
               >
                 <X size={20} />
               </button>
@@ -160,7 +161,8 @@ export function CartDrawer({
                                 </h4>
                                 <button
                                   onClick={() => onRemoveItem(item.product.id, item.selectedSize, isB)}
-                                  className="text-gray-400 hover:text-red-700 transition-colors p-1"
+                                  aria-label="Remove item"
+                                  className="text-gray-400 hover:text-red-700 transition-colors p-1 rounded focus:outline-none focus-visible:ring-2"
                                 >
                                   <Trash2 size={14} />
                                 </button>
@@ -198,7 +200,8 @@ export function CartDrawer({
                                 <button
                                   type="button"
                                   onClick={() => onUpdateQuantity(item.product.id, item.selectedSize, isB, -1)}
-                                  className="p-1.5 hover:bg-amber-50 hover:text-amber-950 transition-colors text-gray-400"
+                                  aria-label="Decrease quantity"
+                                  className="p-1.5 hover:bg-amber-50 hover:text-amber-950 transition-colors text-gray-400 focus:outline-none focus-visible:ring-2"
                                 >
                                   <Minus size={10} />
                                 </button>
@@ -208,7 +211,8 @@ export function CartDrawer({
                                 <button
                                   type="button"
                                   onClick={() => onUpdateQuantity(item.product.id, item.selectedSize, isB, 1)}
-                                  className="p-1.5 hover:bg-amber-50 hover:text-amber-950 transition-colors text-gray-400"
+                                  aria-label="Increase quantity"
+                                  className="p-1.5 hover:bg-amber-50 hover:text-amber-950 transition-colors text-gray-400 focus:outline-none focus-visible:ring-2"
                                 >
                                   <Plus size={10} />
                                 </button>
