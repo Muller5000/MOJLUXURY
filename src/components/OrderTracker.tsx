@@ -194,6 +194,7 @@ export function OrderTracker({ isOpen, onClose, prefilledRef = '' }: OrderTracke
           <button
             onClick={onClose}
             className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-400 hover:text-gray-950"
+            aria-label="Close tracker"
           >
             <X size={20} />
           </button>

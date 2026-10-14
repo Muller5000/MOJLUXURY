@@ -41,6 +41,7 @@ export function Navbar({ onScrollToSection, cartCount = 0, onCartClick, onTrackO
               <button 
                 onClick={() => setIsMobileMenuOpen(true)}
                 className="text-gray-900 focus:outline-none"
+                aria-label="Open mobile menu"
               >
                 <Menu size={24} />
               </button>
@@ -86,12 +87,13 @@ export function Navbar({ onScrollToSection, cartCount = 0, onCartClick, onTrackO
                   <option value="GBP">GBP £</option>
                 </select>
               </div>
-              <button className="text-gray-900 hover:text-amber-700 transition-colors">
+              <button className="text-gray-900 hover:text-amber-700 transition-colors" aria-label="Search">
                 <Search size={20} />
               </button>
               <button 
                 onClick={onWishlistClick} 
                 className="text-gray-900 hover:text-amber-700 transition-colors relative cursor-pointer hidden sm:block"
+                aria-label="View Wishlist"
               >
                 <Heart size={20} />
                 {wishlistCount > 0 && (
@@ -103,6 +105,7 @@ export function Navbar({ onScrollToSection, cartCount = 0, onCartClick, onTrackO
               <button 
                 onClick={onCartClick} 
                 className="text-gray-900 hover:text-amber-700 transition-colors relative cursor-pointer"
+                aria-label="View Shopping Cart"
               >
                 <ShoppingBag size={20} />
                 {cartCount > 0 && (
@@ -128,7 +131,7 @@ export function Navbar({ onScrollToSection, cartCount = 0, onCartClick, onTrackO
           >
             <div className="p-4 flex justify-between items-center border-b border-gray-100">
               <span className="font-serif text-xl font-bold text-amber-900">MOJLUXURY</span>
-              <button onClick={() => setIsMobileMenuOpen(false)} className="text-gray-500 hover:text-gray-900">
+              <button onClick={() => setIsMobileMenuOpen(false)} className="text-gray-500 hover:text-gray-900" aria-label="Close mobile menu">
                 <X size={24} />
               </button>
             </div>
