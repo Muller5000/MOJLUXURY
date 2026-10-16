@@ -1,0 +1,3 @@
+## 2024-05-24 - Missing Accessibility Attributes on Icon Buttons
+**Learning:** Found that multiple icon-only buttons in the navigation bar lacked `aria-label` attributes and keyboard focus indicators, making them completely inaccessible to screen reader and keyboard users. `focus:outline-none` was present without a fallback `focus-visible` style.
+**Action:** Always add `aria-label` attributes to icon-only buttons. When using Tailwind`s `focus:outline-none`, immediately pair it with a `focus-visible:ring-2 focus-visible:ring-offset-2` (or similar brand color ring) to ensure keyboard navigation remains functional and visible.
