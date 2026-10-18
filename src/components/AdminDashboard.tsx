@@ -20,7 +20,7 @@ export const AdminDashboard = () => {
   const [isUploading, setIsUploading] = useState(false);
 
   const supabase = getSupabase();
-  const ADMIN_PASS = import.meta.env.VITE_ADMIN_PASSCODE || '12345';
+  const ADMIN_PASS = import.meta.env.VITE_ADMIN_PASSCODE;
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -31,6 +31,10 @@ export const AdminDashboard = () => {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!ADMIN_PASS) {
+      alert('System error: Admin passcode not configured securely.');
+      return;
+    }
     if (passcode === ADMIN_PASS) setIsAuthenticated(true);
     else alert('Incorrect passcode');
   };
