@@ -38,6 +38,7 @@ export function QuickViewModal({ product, isOpen, onClose, onAddToCart, onBespok
             {/* Close Button */}
             <button 
               onClick={onClose}
+              aria-label="Close quick view"
               className="absolute top-4 right-4 z-20 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-sm backdrop-blur transition-all"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

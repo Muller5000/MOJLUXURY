@@ -73,6 +73,7 @@ export function SizeSelectModal({ isOpen, onClose, product, onAddToCart, onBespo
             </div>
             <button 
               onClick={onClose}
+              aria-label="Close size select"
               className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-400 hover:text-gray-900 -mt-1 -mr-2"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

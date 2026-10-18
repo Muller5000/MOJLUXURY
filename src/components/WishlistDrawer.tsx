@@ -38,6 +38,7 @@ export function WishlistDrawer({ isOpen, onClose, wishlistItems, onRemoveItem, o
               </div>
               <button 
                 onClick={onClose}
+                aria-label="Close wishlist"
                 className="text-gray-500 hover:text-gray-900 p-2 hover:bg-white rounded-full transition-colors"
               >
                 <X size={20} />
