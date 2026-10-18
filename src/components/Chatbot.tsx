@@ -85,6 +85,7 @@ export function Chatbot() {
       {/* Floating Chat Bubble Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
+        aria-label="Toggle chat"
         className="fixed bottom-6 right-6 z-50 bg-amber-950 hover:bg-black text-amber-200 hover:text-white p-4 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 flex items-center justify-center border border-amber-900/30 cursor-pointer group"
       >
         {isOpen ? <X size={24} /> : <MessageSquare size={24} />}
@@ -118,6 +119,7 @@ export function Chatbot() {
               </div>
               <button
                 onClick={() => setIsOpen(false)}
+                aria-label="Close chat"
                 className="p-1 hover:bg-amber-900/40 rounded-full transition-colors text-amber-300 hover:text-white"
               >
                 <X size={16} />
