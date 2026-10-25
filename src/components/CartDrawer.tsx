@@ -62,8 +62,16 @@ export function CartDrawer({
 
     setIsProcessing(true);
 
+    const paystackKey = import.meta.env.VITE_PAYSTACK_PUBLIC_KEY;
+    // 🛡️ Security Check: Prevent checkout and fallback API key usage if not configured.
+    if (!paystackKey) {
+      alert('Payment configuration missing. Please contact support.');
+      setIsProcessing(false);
+      return;
+    }
+
     const handler = (window as any).PaystackPop.setup({
-      key: import.meta.env.VITE_PAYSTACK_PUBLIC_KEY || 'pk_test_d3c1db17fcf79f323c9a6237072551a37c9a625a',
+      key: paystackKey,
       email: email,
       amount: subtotal * 100, // in kobo
       currency: 'NGN',

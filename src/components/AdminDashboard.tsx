@@ -20,7 +20,7 @@ export const AdminDashboard = () => {
   const [isUploading, setIsUploading] = useState(false);
 
   const supabase = getSupabase();
-  const ADMIN_PASS = import.meta.env.VITE_ADMIN_PASSCODE || '12345';
+  const ADMIN_PASS = import.meta.env.VITE_ADMIN_PASSCODE;
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -31,6 +31,12 @@ export const AdminDashboard = () => {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
+    // 🛡️ Security Check: Ensure ADMIN_PASS is defined in the environment.
+    // Fallbacks bypass security controls on missing environments.
+    if (!ADMIN_PASS) {
+      alert('Admin portal configuration is missing. Access denied.');
+      return;
+    }
     if (passcode === ADMIN_PASS) setIsAuthenticated(true);
     else alert('Incorrect passcode');
   };
