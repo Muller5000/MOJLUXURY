@@ -1,0 +1,3 @@
+## 2023-10-27 - Icon-only buttons accessibility pattern
+**Learning:** Found multiple instances across the app (Navbar, CartDrawer, Chatbot) where icon-only buttons lacked `aria-label`s, making them invisible to screen readers. React UI libraries don't always mandate these, making it easy to miss. Dynamic UI elements like Chatbot toggles also need dynamic aria-labels (e.g., "Open chat" vs "Close chat").
+**Action:** Always add descriptive `aria-label`s to icon-only buttons. When the button's action toggles based on state, ensure the aria-label updates dynamically to match the current action. Use contextual info where available (e.g. "Remove [Item] from bag" instead of just "Remove").

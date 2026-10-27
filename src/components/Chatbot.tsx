@@ -86,6 +86,7 @@ export function Chatbot() {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="fixed bottom-6 right-6 z-50 bg-amber-950 hover:bg-black text-amber-200 hover:text-white p-4 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 flex items-center justify-center border border-amber-900/30 cursor-pointer group"
+        aria-label={isOpen ? "Close chat" : "Open chat"}
       >
         {isOpen ? <X size={24} /> : <MessageSquare size={24} />}
         {!isOpen && (
@@ -119,6 +120,7 @@ export function Chatbot() {
               <button
                 onClick={() => setIsOpen(false)}
                 className="p-1 hover:bg-amber-900/40 rounded-full transition-colors text-amber-300 hover:text-white"
+                aria-label="Close chat window"
               >
                 <X size={16} />
               </button>
